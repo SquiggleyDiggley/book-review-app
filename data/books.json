@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "rating": 5,
+    "review": "A classic about wealth and tragedy."
+  },
+  {
+    "id": "2",
+    "title": "1984",
+    "author": "George Orwell",
+    "rating": 4,
+    "review": "A chilling vision of the future."
+  }
+]
