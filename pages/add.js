@@ -30,20 +30,73 @@ export default function AddBook() {
     books.push(newBook)
     localStorage.setItem('books', JSON.stringify(books))
 
-    alert('Book saved!')
+    alert('Book added successfully! 📚')
     router.push('/')
   }
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <h1>Add a New Book</h1>
-      <form onSubmit={handleSubmit}>
-        <input name="title" placeholder="Title" value={form.title} onChange={handleChange} required /><br /><br />
-        <input name="author" placeholder="Author" value={form.author} onChange={handleChange} required /><br /><br />
-        <input name="rating" placeholder="Rating (1–5)" type="number" min="1" max="5" value={form.rating} onChange={handleChange} required /><br /><br />
-        <textarea name="review" placeholder="Your review" value={form.review} onChange={handleChange} required /><br /><br />
-        <button type="submit">Submit</button>
-      </form>
+    <div className="container py-5">
+      <div className="row justify-content-center">
+        <div className="col-md-8 col-lg-6">
+          <h1 className="text-center text-warning fw-bold mb-4">➕ Add a New Book</h1>
+
+          <form onSubmit={handleSubmit} className="card p-4 shadow-sm bg-light">
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Title</label>
+              <input
+                name="title"
+                value={form.title}
+                onChange={handleChange}
+                required
+                className="form-control"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Author</label>
+              <input
+                name="author"
+                value={form.author}
+                onChange={handleChange}
+                required
+                className="form-control"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Rating (1–5)</label>
+              <input
+                name="rating"
+                type="number"
+                min="1"
+                max="5"
+                value={form.rating}
+                onChange={handleChange}
+                required
+                className="form-control"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="form-label fw-semibold">Review</label>
+              <textarea
+                name="review"
+                value={form.review}
+                onChange={handleChange}
+                required
+                rows="4"
+                className="form-control"
+              />
+            </div>
+
+            <div className="d-grid">
+              <button type="submit" className="btn btn-danger fw-bold">
+                Save Book
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

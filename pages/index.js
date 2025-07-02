@@ -1,36 +1,52 @@
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import defaultBooks from '../data/books.json'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const [books, setBooks] = useState([])
 
   useEffect(() => {
     const stored = localStorage.getItem('books')
-    if (stored) {
-      setBooks(JSON.parse(stored))
-    } else {
-      localStorage.setItem('books', JSON.stringify(defaultBooks))
-      setBooks(defaultBooks)
-    }
+    if (stored) setBooks(JSON.parse(stored))
   }, [])
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <h1>📚 Book Reviews</h1>
-      <ul>
-        {books.map(book => (
-          <li key={book.id} style={{ marginBottom: '10px' }}>
-            <Link href={`/books/${book.id}`}>
-              <strong>{book.title}</strong> by {book.author} – ⭐ {book.rating}
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <br />
-      <Link href="/add">
-        <button>Add a New Book</button>
-      </Link>
+    <div className="container py-5">
+      <div className="text-center mb-5">
+        <h1 className="display-4 text-warning fw-bold">📚 Straw Hat Book Reviews</h1>
+        <p className="lead text-secondary">Sail the Grand Line one book at a time!</p>
+
+        {/* ✅ Bootstrap + Next.js 13+ compatible Link */}
+        <Link href="/add" className="btn btn-danger mt-3">
+          ➕ Add a Book
+        </Link>
+      </div>
+
+      {books.length === 0 ? (
+        <p className="text-center text-muted">No reviews yet. Be the first to add one!</p>
+      ) : (
+        <div className="row justify-content-center">
+          {books.map((book) => (
+            <div key={book.id} className="col-md-6 col-lg-4 mb-4">
+              <div className="card h-100 shadow-sm">
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title fw-bold">{book.title}</h5>
+                  <h6 className="card-subtitle mb-2 text-muted">by {book.author}</h6>
+                  <p className="card-text mb-1">⭐ {book.rating}/5</p>
+                  <p className="card-text flex-grow-1">{book.review}</p>
+
+                  {/* ✅ Bootstrap button styled Next.js Link */}
+                  <Link
+                    href={`/books/${book.id}`}
+                    className="mt-auto btn btn-outline-primary btn-sm"
+                  >
+                    Read More
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
