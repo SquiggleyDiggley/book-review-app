@@ -54,4 +54,46 @@ export default function AddBook() {
           <label className="block mb-1 font-medium">Author</label>
           <input
             name="author"
-            valu
+            value={form.author}
+            onChange={handleChange}
+            required
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400"
+          />
+        </div>
+
+        <div>
+          <label className="block mb-1 font-medium">Rating (1–5)</label>
+          <input
+            name="rating"
+            type="number"
+            min="1"
+            max="5"
+            value={form.rating}
+            onChange={handleChange}
+            required
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400"
+          />
+        </div>
+
+        <div>
+          <label className="block mb-1 font-medium">Review</label>
+          <textarea
+            name="review"
+            value={form.review}
+            onChange={handleChange}
+            required
+            rows={4}
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="bg-blue-600 text-white font-medium px-4 py-2 rounded hover:bg-blue-700 transition"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  )
+}
